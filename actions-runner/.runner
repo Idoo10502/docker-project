@@ -1,0 +1,11 @@
+﻿{
+  "agentId": 2,
+  "agentName": "IDO",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelinesghubeus23.actions.githubusercontent.com/ImNP8s6Lfw0HJwdFRoov84sbfTWvuUwW0FfYBl45q0e1akjLbW/",
+  "gitHubUrl": "https://github.com/Idoo10502/docker-project",
+  "workFolder": "_work",
+  "useV2Flow": true,
+  "serverUrlV2": "https://broker.actions.githubusercontent.com/"
+}

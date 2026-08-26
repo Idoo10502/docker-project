@@ -9,7 +9,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - name: Build image
@@ -22,7 +22,7 @@ jobs:
           path: image.tar
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build
     steps:
       - uses: actions/download-artifact@v4
@@ -34,7 +34,7 @@ jobs:
         run: docker run --rm $IMAGE_NAME:${{ github.sha }} pytest test_app.py -v
 
   push:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: test
     if: github.ref == 'refs/heads/main'
     permissions:
@@ -53,7 +53,7 @@ jobs:
           docker push $IMAGE_NAME:latest
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: push
     if: github.ref == 'refs/heads/main'
     steps:
