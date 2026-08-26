@@ -1,8 +1,11 @@
 from fastapi.testclient import TestClient
+from starlette.types import ASGIApp
 from unittest.mock import patch, MagicMock
-from app import app
+from typing import cast
 
-client = TestClient(app)
+from app import app as application
+
+client = TestClient(cast(ASGIApp, application))
 
 def test_health():
     response = client.get("/health")
