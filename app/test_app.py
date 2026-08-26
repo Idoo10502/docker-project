@@ -1,11 +1,8 @@
 from fastapi.testclient import TestClient
-from starlette.types import ASGIApp
 from unittest.mock import patch, MagicMock
-from typing import cast
+from app import app
 
-from app import app as application
-
-client = TestClient(cast(ASGIApp, application))
+client = TestClient(app)  # type: ignore[arg-type]  # pyright resolves this dir as both "app" module and namespace package
 
 def test_health():
     response = client.get("/health")
