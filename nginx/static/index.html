@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="he" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Items app</title>
+  <style>
+    body {
+      font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px;}
+      button {margin: 5px; padding: 8px 16px; cursor: pointer;}
+      input{padding: 8px; margin: 5px;}
+      #list li { padding: 4px 0; }
+  </style>
+</head>
+<body>
+  <h1>🗃️ Items</h1>
+  <button onclick="loadItems()">טען פריטים</button>
+  <ul id="list"></ul>
+  <hr>
+  <h3>הוסף פריט</h3>
+  <input type="text" id="newItem" placeholder="שם הפריט">
+  <button onclick="addItem()">הוסף</button>
+  <p id="msg"></p>
+  <script>
+    async function loadItems() {
+      const res = await fetch('/api/items');
+      const data = await res.json();
+      document.getElementById('list').innerHTML =
+        data.map(i => `<li>[#${i.id}] ${i.name}</li>`).join('');
+    }
+    async function addItem() {
+      const name = document.getElementById('newItem').value.trim();
+      if (!name) return;
+      const res = await fetch(`/api/items/${name}`, { method: 'POST' });
+      const data = await res.json();
+      document.getElementById('msg').textContent = `נוסף: ${data.name} (id: ${data.id})`;
+      loadItems();
+    }
+  </script>
+</body>
+</html>
