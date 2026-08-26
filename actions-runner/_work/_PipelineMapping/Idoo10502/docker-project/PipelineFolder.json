@@ -1,0 +1,12 @@
+﻿{
+  "repositoryName": "Idoo10502/docker-project",
+  "pipelineDirectory": "docker-project",
+  "workspaceDirectory": "docker-project\\docker-project",
+  "repositories": {
+    "Idoo10502/docker-project": {
+      "repositoryPath": "docker-project\\docker-project",
+      "lastRunOn": "08/26/2026 19:16:02 +03:00"
+    }
+  },
+  "lastRunOn": "08/26/2026 19:16:02 +03:00"
+}
