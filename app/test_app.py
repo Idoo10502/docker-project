@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 from unittest.mock import patch, MagicMock
-from app.app import app
+from app import app
 
 client = TestClient(app)
 
@@ -14,7 +14,7 @@ def test_root():
     assert response.status_code == 200
     assert "message" in response.json()
 
-@patch("app.app.get_connection")
+@patch("app.get_connection")
 def test_get_items(mock_get_conn):
     mock_conn = MagicMock()
     mock_cursor = MagicMock()
@@ -30,7 +30,7 @@ def test_get_items(mock_get_conn):
         {"id": 1, "name": "Keyboard", "created_at": "2026-01-01"}
     ]
 
-@patch("app.app.get_connection")
+@patch("app.get_connection")
 def test_add_item(mock_get_conn):
     mock_conn = MagicMock()
     mock_cursor = MagicMock()
